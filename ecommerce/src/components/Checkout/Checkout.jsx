@@ -2,6 +2,10 @@ import { useState } from "react"
 import { useCart } from "../../hooks/useCart"
 import { addDoc, collection, documentId, getDocs, query, where, writeBatch } from "firebase/firestore"
 import { db } from "../../services/firebase"
+import "./Checkout.css";
+import toast, { Toaster } from 'react-hot-toast';
+
+const notify  = (msg) => toast(msg);
 
 
 const Checkout = () => {
@@ -18,6 +22,8 @@ const Checkout = () => {
   const total = getTotal();
 
   const createOrder = async () => {
+
+ 
     setLoading(true);
     try {
       const objOrder = {
@@ -65,17 +71,19 @@ const Checkout = () => {
 
         const orderRef = collection(db, "orders");
         const orderAdded = await addDoc(orderRef, objOrder);
-        console.log(`El id de su orden es ${orderAdded.id}`);
+       // console.log(`El id de su orden es ${orderAdded.id}`);
         // limpiar el carrito
-
+          
         setOrderCreated(true);
-        clearCart();
+        clearCart(); 
+       
+
       } else {
         // falta logica de compra o encargo de productos
-        console.log("Hay productos que estan fuera de stock");
+       // console.log("Hay productos que estan fuera de stock");
       }
     } catch (error) {
-      console.log("");
+     // console.log("");
     } finally {
       setLoading(false);
     }
@@ -91,7 +99,13 @@ const Checkout = () => {
 
   return (
     <>
+
+      
+
       {/* form de checkout */}
+
+
+      <div classname="FormCliente">
       <label htmlFor="nombre">Nombre</label>
       <input onChange={(e) => setNombre(e.target.value)} value={nombre} />{" "}
       <br />
@@ -101,8 +115,10 @@ const Checkout = () => {
       <label htmlFor="telefono">Telefono</label>
       <input onChange={(e) => setTelefono(e.target.value)} value={telefono} />
       <br />
-      <label htmlFor="direccion">Addres</label>
+      <label htmlFor="direccion">Domiciio </label>
       <input onChange={(e) => setDireccion(e.target.value)} value={direccion} />
+      </div>
+
       <div>
         {cart.map((item) => (
           <article key={item.id}>
@@ -121,6 +137,8 @@ const Checkout = () => {
         <button className="btn btn-info" onClick={createOrder}>
           Generar Orden
         </button>
+          
+
       </div>
     </>
   );

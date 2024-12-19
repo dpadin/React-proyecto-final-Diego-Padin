@@ -1,0 +1,17 @@
+.card-size{
+
+    width: 250px;
+    height: 250px;
+}
+.btn-custom{
+    position: absolute;
+    top: 170px; left: 60px;
+
+}
+.img-sizing{
+    margin-top :5px;
+
+    width: 220px;
+    height: 220px;
+
+}

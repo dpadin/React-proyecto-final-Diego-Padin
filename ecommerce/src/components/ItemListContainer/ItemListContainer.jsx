@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 //import { getProducts, getProductsByCategory } from "../../asyncMock";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
-
 import { db } from "../../services/firebase";
-
-
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useNotification } from "../../context/NotificationContext";
+ 
+
 function ItemListContainer({greetings}) {
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
@@ -40,7 +39,7 @@ function ItemListContainer({greetings}) {
         <h3
           style={{
             color: "white",
-            backgroundColor: "#d68fff",
+            backgroundColor: "blue",
             textAlign: "center",
           }}
         >

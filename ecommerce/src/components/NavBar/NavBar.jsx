@@ -6,6 +6,7 @@ function NavBar({ title }) {
   return (
     <nav
       style={{ width: "80%", margin: "0 auto" }}
+       
       className="navbar navbar-expand-lg bg-body-tertiary"
     >
       <div className="container-fluid">
